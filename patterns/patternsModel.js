@@ -3,7 +3,8 @@ const db = require('../data/dbConfig.js')
 module.exports = {
     add,
     findAll,
-    findBy,
+    findById,
+    findByName,
     remove
 }
 
@@ -15,8 +16,12 @@ function findAll(){
     return db('patterns')
 }
 
-function findBy(id){
+function findById(id){
     return db('patterns').where({'id': id })
+}
+
+function findByName(name){
+    return db('patterns').where({ 'name': name})
 }
 
 function remove(id){
