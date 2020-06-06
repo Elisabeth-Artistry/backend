@@ -12,13 +12,21 @@ router.post('/create', (req, res) => {
         details.description &&
         details.price
     ){
-        patterns.add(details)
-            .then(patternId => {
-                res.status(201).json({ id: patternId})
+        patterns.findByName(details.name)
+            .then(pattern => {
+                if(pattern.length > 0){
+                    res.status(409).json({ message: `${pattern[0].name} already exists`})
+                } else {
+                    patterns.add(details)
+                        .then(patternId => {
+                            res.status(201).json({ id: patternId })
+                        })
+                        .catch(error => {
+                            res.status(500).json({ errorMessage: "unable to add pattern" })
+                        })
+                }
             })
-            .catch(error => {
-                res.status(409).json({errorMessage: `${details.name} already exists`})
-            })
+            .catch(error => res.status(500).json({ errorMessage: "issue with findByName"}))
     } else {
         res.status(400).json({ errorMessage: "name, image_url, description, price, yarn_weight, and hook_size are all required"})
     }
@@ -31,6 +39,18 @@ router.get('/', (req, res) => {
         })
         .catch(error => {
             res.status(400).json({ errorMessage: 'Could not find patterns'})
+        })
+})
+
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+
+    patterns.findById(id)
+        .then(pattern => {
+            res.status(200).json(pattern)
+        })
+        .catch(error => {
+            res.status(404).json({ errorMessage: 'pattern not found'})
         })
 })
 
