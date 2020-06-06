@@ -16,9 +16,9 @@ function findAll(){
 }
 
 function findBy(id){
-    return db('patterns').where(id)
+    return db('patterns').where({'id': id })
 }
 
 function remove(id){
-    return db('patterns').where(id).del()
+    return db('patterns').where({'id': id }).del()
 }
