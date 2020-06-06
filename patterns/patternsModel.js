@@ -6,3 +6,7 @@ module.exports = {
     findBy,
     remove
 }
+
+function add(details){
+    return db('patterns').insert(details, "id")
+}
