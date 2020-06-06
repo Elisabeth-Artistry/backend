@@ -12,7 +12,9 @@ exports.up = function(knex) {
       tbl.float('price')
         .notNullable()
       tbl.string('yarn_weight')
+        .defaultTo('not specified')
       tbl.string('hook_size')
+        .defaultTo('not specified')
   })
 };
 
