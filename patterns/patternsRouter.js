@@ -10,9 +10,7 @@ router.post('/create', (req, res) => {
         details.name &&
         details.image_url &&
         details.description &&
-        details.price &&
-        details.yarn_weight &&
-        details.hook_size
+        details.price
     ){
         patterns.add(details)
             .then(patternId => {
