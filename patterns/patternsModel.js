@@ -5,6 +5,7 @@ module.exports = {
     findAll,
     findById,
     findByName,
+    update,
     remove
 }
 
@@ -21,7 +22,11 @@ function findById(id){
 }
 
 function findByName(name){
-    return db('patterns').where({ 'name': name})
+    return db('patterns').where({ 'name': name })
+}
+
+function update(details, id){
+    return db('patterns').where({ 'id': id }).update(details)
 }
 
 function remove(id){
