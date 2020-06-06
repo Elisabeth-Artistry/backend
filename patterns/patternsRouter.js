@@ -75,8 +75,28 @@ router.put('/:id', (req, res) => {
         .catch(error => {
             res.status(500).json({ errorMessage: 'unable to update pattern'})
         })
+})
 
+router.delete('/:id', (req, res) => {
+    const id = req.params.id
 
+    patterns.findById(id)
+        .then(pattern => {
+            if(pattern.length > 0){
+                patterns.remove(id)
+                    .then(delNum => {
+                        res.status(200).json({ message: `${pattern[0].name} deleted`, deletedPattern: pattern})
+                    })
+                    .catch(error => {
+                        res.status(500).json({ errorMessage: 'unable to remove pattern'})
+                    })
+            } else {
+                res.status(404).json({ message: 'pattern not found' })
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ errorMessage: 'unable to remove pattern'})
+        })
 })
 
 module.exports = router
