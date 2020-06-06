@@ -10,7 +10,9 @@ router.post('/create', (req, res) => {
         details.name &&
         details.image_url &&
         details.description &&
-        details.price
+        details.price &&
+        details.yarn_weight &&
+        details.hook_size
     ){
         patterns.add(details)
             .then(patternId => {
@@ -20,8 +22,18 @@ router.post('/create', (req, res) => {
                 res.status(409).json({errorMessage: `${details.name} already exists`})
             })
     } else {
-        res.status(400).json({ errorMessage: "name, image_url, description, and price are all required"})
+        res.status(400).json({ errorMessage: "name, image_url, description, price, yarn_weight, and hook_size are all required"})
     }
+})
+
+router.get('/', (req, res) => {
+    patterns.findAll()
+        .then(patterns => {
+            res.status(200).json(patterns)
+        })
+        .catch(error => {
+            res.status(400).json({ errorMessage: 'Could not find patterns'})
+        })
 })
 
 module.exports = router
