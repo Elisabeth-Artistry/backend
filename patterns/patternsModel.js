@@ -12,5 +12,9 @@ function add(details){
 }
 
 function findAll(){
-    return db('users')
+    return db('patterns')
+}
+
+function findBy(id){
+    return db('patterns').where(id)
 }
