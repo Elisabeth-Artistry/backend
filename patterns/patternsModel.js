@@ -10,3 +10,7 @@ module.exports = {
 function add(details){
     return db('patterns').insert(details, "id")
 }
+
+function findAll(){
+    return db('users')
+}
