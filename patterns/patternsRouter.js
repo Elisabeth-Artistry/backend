@@ -47,10 +47,14 @@ router.get('/:id', (req, res) => {
 
     patterns.findById(id)
         .then(pattern => {
-            res.status(200).json(pattern)
+            if(pattern.length > 0){
+                res.status(200).json(pattern)
+            } else {
+                res.status(404).json({ errorMessage: 'pattern not found'})
+            }
         })
         .catch(error => {
-            res.status(404).json({ errorMessage: 'pattern not found'})
+            res.status(500).json({ errorMessage: 'unable to find pattern'})
         })
 })
 
