@@ -54,4 +54,29 @@ router.get('/:id', (req, res) => {
         })
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const details = req.body
+
+    patterns.findById(id)
+        .then(pattern => {
+            if(pattern.length > 0){
+                patterns.update(details, id)
+                    .then(patternId => {
+                        res.status(200).json({ id: patternId, message: `${patternId} updated`})
+                    })
+                    .catch(error => {
+                        res.status(500).status({ errorMessage: 'unable to update pattern'})
+                    })
+            } else {
+                res.status(404).json({ errorMessage: `${details.name} pattern not found`})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ errorMessage: 'unable to update pattern'})
+        })
+
+
+})
+
 module.exports = router

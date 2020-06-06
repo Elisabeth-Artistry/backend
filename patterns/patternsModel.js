@@ -26,7 +26,7 @@ function findByName(name){
 }
 
 function update(details, id){
-    return db('patterns').where({ 'id': id }).update(details)
+    return db('patterns').where({ 'id': id }).update(details, ["id"])
 }
 
 function remove(id){
