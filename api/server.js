@@ -1,9 +1,9 @@
-const express = ('express')
+const express = require('express')
 
 const server = express()
 
 server.get('/', (req, res) => {
-    res.send('Elisaveth Artistry API')
+    res.send('Elisabeth Artistry API')
 })
 
 module.exports = server
