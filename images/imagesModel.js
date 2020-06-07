@@ -20,3 +20,7 @@ function findAll(){
 function findById(id){
     return db('images').where({ "id": id})
 }
+
+function findByName(name){
+    return db('images').where({ "name": name})
+}
