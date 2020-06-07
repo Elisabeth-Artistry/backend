@@ -33,4 +33,14 @@ router.post('/create', (req, res) => {
     }
 })
 
+router.get('/', (req, res) => {
+    images.findAll()
+        .then(images => {
+            res.status(200).json(images)
+        })
+        .catch(error => {
+            res.status(400).json({ errorMessage: 'Could not find images' })
+        })
+})
+
 module.exports = router
