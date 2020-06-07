@@ -26,7 +26,9 @@ router.post('/create', (req, res) => {
                         })
                 }
             })
-            .catch(error => res.status(500).json({ errorMessage: "issue with findByName"}))
+            .catch(error => {
+                res.status(500).json({ errorMessage: "unable to add pattern"})
+            })
     } else {
         res.status(400).json({ errorMessage: "name, image_url, description, price, yarn_weight, and hook_size are all required"})
     }
