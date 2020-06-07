@@ -12,3 +12,7 @@ module.exports = {
 function add(details){
     return db('images').insert(details, "id")
 }
+
+function findAll(){
+    return db('images')
+}
