@@ -43,4 +43,20 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+
+    images.findById(id)
+        .then(image => {
+            if(image.length > 0){
+                res.status(200).json(image)
+            } else {
+                res.status(404).json({ errorMessage: 'image not found' })
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ errorMessage: 'unable to find image' })
+        })
+})
+
 module.exports = router
