@@ -82,4 +82,26 @@ router.put('/:id', (req, res) => {
         })
 })
 
+router.delete('/:id', (req, res) => {
+    const id = req.params.id
+
+    images.findById(id)
+        .then(imageArr => {
+            if(imageArr.length > 0){
+                images.remove(id)
+                    .then(delNum => {
+                        res.status(200).json({ message: `${imageArr[0].name} deleted`, deletedImage: imageArr[0]})
+                    })
+                    .catch(error => {
+                        res.status(500).json({ errorMessage: 'unable to remove image'})
+                    })
+            } else {
+                res.status(404).json({ errorMessage: 'image not found'})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ errorMessage: 'unable to remove pattern'})
+        })
+})
+
 module.exports = router
