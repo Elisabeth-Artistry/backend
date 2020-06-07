@@ -16,3 +16,7 @@ function add(details){
 function findAll(){
     return db('images')
 }
+
+function findById(id){
+    return db('images').where({ "id": id})
+}
