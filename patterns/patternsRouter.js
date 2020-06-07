@@ -13,9 +13,9 @@ router.post('/create', (req, res) => {
         details.price
     ){
         patterns.findByName(details.name)
-            .then(pattern => {
-                if(pattern.length > 0){
-                    res.status(409).json({ message: `${pattern[0].name} already exists`})
+            .then(patternArr => {
+                if(patternArr.length > 0){
+                    res.status(409).json({ message: `${patternArr[0].name} already exists`})
                 } else {
                     patterns.add(details)
                         .then(patternId => {
