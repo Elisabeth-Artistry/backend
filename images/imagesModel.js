@@ -8,3 +8,7 @@ module.exports = {
     update,
     remove
 }
+
+function add(details){
+    return db('images').insert(details, "id")
+}
