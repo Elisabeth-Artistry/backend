@@ -59,4 +59,27 @@ router.get('/:id', (req, res) => {
         })
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const details = req.body
+
+    images.findById(id)
+        .then(imageArr => {
+            if(imageArr.length > 0){
+                images.update(details, id)
+                    .then(imageId => {
+                        res.status(200).json({ id: imageId })
+                    })
+                    .catch(error => {
+                        res.status(500).json({ errorMessage: 'unable to update image info'})
+                    })
+            } else {
+                res.status(404).json({ message: `${details.name} image not found`})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ errorMessage: 'unable to update pattern' })
+        })
+})
+
 module.exports = router
