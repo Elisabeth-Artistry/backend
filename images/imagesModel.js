@@ -24,3 +24,7 @@ function findById(id){
 function findByName(name){
     return db('images').where({ "name": name})
 }
+
+function update(details, id){
+    return db('images').where({ "id": id }).update(details, ["id"])
+}
