@@ -72,7 +72,7 @@ router.put('/:id', (req, res) => {
                         res.status(200).json({ id: patternId, message: `${patternId} updated`})
                     })
                     .catch(error => {
-                        res.status(500).status({ errorMessage: 'unable to update pattern'})
+                        res.status(500).json({ errorMessage: 'unable to update pattern'})
                     })
             } else {
                 res.status(404).json({ errorMessage: `${details.name} pattern not found`})
