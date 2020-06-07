@@ -91,7 +91,7 @@ router.delete('/:id', (req, res) => {
             if(pattern.length > 0){
                 patterns.remove(id)
                     .then(delNum => {
-                        res.status(200).json({ message: `${pattern[0].name} deleted`, deletedPattern: pattern})
+                        res.status(200).json({ message: `${pattern[0].name} deleted`, deletedPattern: pattern[0]})
                     })
                     .catch(error => {
                         res.status(500).json({ errorMessage: 'unable to remove pattern'})
