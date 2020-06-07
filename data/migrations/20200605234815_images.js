@@ -14,7 +14,7 @@ exports.up = function(knex) {
         .inTable('patterns')
         .onDelete('RESTRICT')
         .onUpdate('CASCADE')
-        .defaultTo(0)
+        .defaultTo(null)
   })
 };
 
