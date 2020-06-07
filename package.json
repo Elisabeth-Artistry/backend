@@ -25,7 +25,8 @@
     "helmet": "^3.22.0",
     "knex": "^0.21.1",
     "pg": "^8.2.1",
-    "sqlite3": "^4.2.0"
+    "sqlite3": "^4.2.0",
+    "stripe": "^8.60.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
