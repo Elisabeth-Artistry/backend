@@ -3,7 +3,7 @@ const stripe = require('stripe')(`${process.env.STRIPE_KEY}`)
 
 const router = express.Router()
 
-router.get('/secret', async (req, res) => {
+router.get('/secret', async (req, res, next) => {
     const intent = await stripe.paymentIntents.create({
         amount: 1099,
         currency: 'usd',
