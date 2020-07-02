@@ -10,9 +10,7 @@ const corsOptions = {
 router.get('/secret', async (req, res, next) => {
     const intent = await stripe.paymentIntents.create({
         amount: 1099,
-        currency: 'usd',
-        // Verify your integration in this guide by including this parameter
-        metadata: {integration_check: 'accept_a_payment'},
+        currency: 'usd'
       })
 
     res.status(200).json({ client_secret: intent.client_secret })
