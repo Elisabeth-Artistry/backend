@@ -8,9 +8,9 @@ const imagesRouter = require('../images/imagesRouter')
 
 const server = express()
 
+server.use(cors())
 server.use(helmet())
 server.use(express.json())
-server.use(cors())
 
 server.get('/', (req, res) => {
     res.send('Elisabeth Artistry API')

@@ -1,6 +1,5 @@
 const express = require('express')
 const stripe = require('stripe')(`${process.env.STRIPE_KEY}`)
-const cors = require('cors')
 
 const router = express.Router()
 
@@ -8,7 +7,7 @@ const corsOptions = {
   origin: 'http://localhost:3000'
 }
 
-router.get('/secret', cors(corsOptions), async (req, res, next) => {
+router.get('/secret', async (req, res, next) => {
     const intent = await stripe.paymentIntents.create({
         amount: 1099,
         currency: 'usd',
